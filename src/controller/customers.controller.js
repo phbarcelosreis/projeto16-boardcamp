@@ -17,6 +17,8 @@ export async function customersGet(req, res) {
 
 export async function customersGetID(req, res) {
 
+    const { id } = req.params;
+
     try {
 
         const foundCustomer = await connection.query(

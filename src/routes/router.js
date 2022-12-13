@@ -1,8 +1,8 @@
 import { Router } from "express";
 import { categoriesGet, categoriesPost } from "../controller/categories.controller";
-import { customersGet, customersGetID } from "../controller/customers.controller";
+import { customersGet, customersGetID, customersPost, customerUpdate } from "../controller/customers.controller";
 import { checkCategoriesPost } from "../middlewares/categoriesCheck.middleware";
-import { customersCheckID } from "../middlewares/customersCheck.middleware";
+import { customerPostValidate, customersCheckID } from "../middlewares/customersCheck.middleware";
 
 const router = Router();
 
@@ -11,7 +11,8 @@ router.post("/categories", checkCategoriesPost, categoriesPost);
 
 router.get("/customers", customersGet);
 router.get("/customers:id", customersCheckID , customersGetID);
-router.post("/customers")
+router.post("/customers", customerPostValidate, customersPost);
+router.put("customers/:id", customerPostValidate ,customerUpdate)
 
 
 export default router;
